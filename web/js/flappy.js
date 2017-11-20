@@ -46,7 +46,10 @@ var mainState = {
 
         var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jump, this);
+		
+		game.input.onTap.add(this.jump, this);
 
+		
         game.time.events.loop(1500, this.addRowOfPipes, this);
 
     },
@@ -65,7 +68,7 @@ var mainState = {
 
     },
     jump: function () {
-        bird.body.velocity.y = -350;
+        bird.body.velocity.y = -330;
         game.add.tween(bird).to({angle: -20}, 100).start();
 
     },
@@ -102,19 +105,11 @@ var mainState = {
     addRowOfPipes: function() {
 
         var bottomPos = this.getPipeYPos(100,200),
-            upperPos = this.getPipeYPos(550, 650),
-            hole = 400,
-            diff = upperPos - bottomPos;
-
-        if (diff > hole) {
-            var subDif = Math.round(( diff - hole) / 2);
-            bottomPos = bottomPos + subDif;
-            upperPos = upperPos + subDif;
-        }
+            hole = 430,
+			upperPos = bottomPos + hole;
 
         this.addPipe(280, bottomPos);
-        this.addPipe(278, upperPos)
-        this.addPoint() - 1;
+        this.addPipe(278, upperPos);
 
     },
     addPoint: function () {
