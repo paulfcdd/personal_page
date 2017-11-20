@@ -3,3 +3,4 @@ var/
 tests/
 vendor/
 .idea/
+web/node_modules/

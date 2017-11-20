@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {% set gameName = game ~ '.js' %}
+    {% set gamePath = asset('js/' ~ gameName) %}
+    <script src="{{ asset('node_modules/phaser/build/phaser.min.js') }}"></script>
+    <script src="{{ gamePath }}"></script>
+{% endblock %}
+
+{% block body %}
+
+{% endblock %}

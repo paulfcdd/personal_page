@@ -18,4 +18,14 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+     * @Route("/{game}", name="load_game")
+     */
+    public function loadGame($game) {
+        return $this->render('default/game.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'game' => $game,
+        ]);
+    }
 }
