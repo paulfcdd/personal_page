@@ -47,7 +47,7 @@ var mainState = {
         var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jump, this);
 		
-		game.input.onTap.add(this.jump, this);
+		game.input.onTap.add(this.jumpOnTap, this);
 
 		
         game.time.events.loop(1500, this.addRowOfPipes, this);
@@ -72,6 +72,10 @@ var mainState = {
         game.add.tween(bird).to({angle: -20}, 100).start();
 
     },
+	jumpOnTap: function() {
+		bird.body.velocity.y = -250;
+        game.add.tween(bird).to({angle: -20}, 100).start();
+	},
     checkIfOverlap: function(spriteA, spriteB) {
 
         var boundsA = spriteA.getBounds();
@@ -96,7 +100,7 @@ var mainState = {
         // Enable physics on the pipe
         game.physics.arcade.enable(pipe);
         // Add velocity to the pipe to make it move left
-        pipe.body.velocity.x = -200;
+        pipe.body.velocity.x = -170;
         // Automatically kill the pipe when it's no longer visible
         pipe.checkWorldBounds = true;
         pipe.outOfBoundsKill = true;
