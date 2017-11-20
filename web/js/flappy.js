@@ -4,7 +4,7 @@ var
     ground,
     pipe,
     labelScore,
-    score = 0,
+    score = -1,
     pipes;
 
 
@@ -33,7 +33,7 @@ var mainState = {
         pipes.enableBody = true;
 
 
-        labelScore = game.add.text(100, 20, score, { font: "30px Arial", fill: "#ffffff" });
+        labelScore = game.add.text(100, 20, '0', { font: "30px Arial", fill: "#ffffff" });
 
         game.world.bringToTop(base);
 
@@ -108,12 +108,13 @@ var mainState = {
     ,
     addRowOfPipes: function() {
 
-        var bottomPos = this.getPipeYPos(100,200),
-            hole = 430,
+        var bottomPos = this.getPipeYPos(100,300),
+            hole = 440,
 			upperPos = bottomPos + hole;
 
         this.addPipe(280, bottomPos);
         this.addPipe(278, upperPos);
+		this.addPoint();
 
     },
     addPoint: function () {
