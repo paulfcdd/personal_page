@@ -53,7 +53,7 @@ var playState = {
 
     },
     jumpOnTap: function() {
-        bird.body.velocity.y = -630; //-250
+        bird.body.velocity.y = -330; //-250
         game.add.tween(bird).to({angle: -20}, 100).start();
     },
     restartGame: function () {
