@@ -4,3 +4,4 @@ tests/
 vendor/
 .idea/
 web/node_modules/
+/.web-server-pid

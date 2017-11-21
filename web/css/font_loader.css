@@ -1,0 +1,6 @@
+@font-face {
+    font-family: "flappy";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../src/flappy/assets/font/flappy_font.TTF");
+}

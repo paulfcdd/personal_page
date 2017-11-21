@@ -4,7 +4,7 @@ var
     ground,
     pipe,
     labelScore,
-    score = 0,
+    score = -1,
     pipes;
 
 
@@ -12,7 +12,7 @@ var mainState = {
     preload: function () {
         game.load.image('bg_day', '../src/flappy/assets/sprites/background-day.png');
         game.load.image('base', '../src/flappy/assets/sprites/base.png');
-        game.load.image('bird', '../src/flappy/assets/sprites/bluebird-midflap.png');
+        game.load.image('bird', '../src/flappy/assets/sprites/yellowbird-midflap.png');
         game.load.image('pipe', '../src/flappy/assets/sprites/pipe-green.png');
         game.load.image('test', '../src/flappy/pipe.png');
         game.load.image('simple_pipe', '../src/flappy/assets/sprites/pipe.png');
@@ -32,9 +32,6 @@ var mainState = {
         pipes = game.add.group();
         pipes.enableBody = true;
 
-
-        labelScore = game.add.text(100, 20, score, { font: "30px Arial", fill: "#ffffff" });
-
         game.world.bringToTop(base);
 
         bird = game.add.sprite(100,250, 'bird');
@@ -44,8 +41,12 @@ var mainState = {
 
         bird.anchor.setTo(-0.2, 0.5);
 
+        labelScore = game.add.text(140, 20, '0', { font: "30px flappy", fill: "#ffffff" });
+
         var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jump, this);
+
+        game.input.onTap.add(this.jumpOnTap, this);
 
         game.time.events.loop(1500, this.addRowOfPipes, this);
 
@@ -65,17 +66,13 @@ var mainState = {
 
     },
     jump: function () {
-        bird.body.velocity.y = -350;
+        bird.body.velocity.y = -330;
         game.add.tween(bird).to({angle: -20}, 100).start();
 
     },
-    checkIfOverlap: function(spriteA, spriteB) {
-
-        var boundsA = spriteA.getBounds();
-        var boundsB = spriteB.getBounds();
-
-        return Phaser.Rectangle.intersects(boundsA, boundsB);
-
+    jumpOnTap: function() {
+        bird.body.velocity.y = -250;
+        game.add.tween(bird).to({angle: -20}, 100).start();
     },
     restartGame: function () {
         game.state.start('main');
@@ -93,7 +90,7 @@ var mainState = {
         // Enable physics on the pipe
         game.physics.arcade.enable(pipe);
         // Add velocity to the pipe to make it move left
-        pipe.body.velocity.x = -200;
+        pipe.body.velocity.x = -170;
         // Automatically kill the pipe when it's no longer visible
         pipe.checkWorldBounds = true;
         pipe.outOfBoundsKill = true;
@@ -101,20 +98,13 @@ var mainState = {
     ,
     addRowOfPipes: function() {
 
-        var bottomPos = this.getPipeYPos(100,200),
-            upperPos = this.getPipeYPos(550, 650),
-            hole = 400,
-            diff = upperPos - bottomPos;
-
-        if (diff > hole) {
-            var subDif = Math.round(( diff - hole) / 2);
-            bottomPos = bottomPos + subDif;
-            upperPos = upperPos + subDif;
-        }
+        var bottomPos = this.getPipeYPos(100,300),
+            hole = 440,
+            upperPos = bottomPos + hole;
 
         this.addPipe(280, bottomPos);
-        this.addPipe(278, upperPos)
-        this.addPoint() - 1;
+        this.addPipe(278, upperPos);
+        this.addPoint();
 
     },
     addPoint: function () {
