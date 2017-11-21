@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block javascripts %}
-    {% set gameName = game ~ '.js' %}
-    {% set gamePath = asset('js/' ~ gameName) %}
+    {% set gameDir = asset('js/'~game~'/') %}
     <script src="{{ asset('node_modules/phaser/build/phaser.min.js') }}"></script>
-    <script src="{{ gamePath }}"></script>
+    <script src="{{ gameDir~'finish.js' }}"></script>
+    <script src="{{ gameDir~'boot.js' }}"></script>
+    <script src="{{ gameDir~'load.js' }}"></script>
+    <script src="{{ gameDir~'menu.js' }}"></script>
+    <script src="{{ gameDir~'play.js' }}"></script>
+    <script src="{{ gameDir~'game.js' }}"></script>
 {% endblock %}
 
 {% block body %}
