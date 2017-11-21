@@ -46,7 +46,7 @@ var mainState = {
         var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jump, this);
 
-        game.input.onTap.add(this.jumpOnTap, this);
+		game.input.onTap.add(this.jumpOnTap, this);
 
         game.time.events.loop(1500, this.addRowOfPipes, this);
 
