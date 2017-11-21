@@ -53,7 +53,7 @@ var playState = {
 
     },
     jumpOnTap: function() {
-        bird.body.velocity.y = -250;
+        bird.body.velocity.y = -300;
         game.add.tween(bird).to({angle: -20}, 100).start();
     },
     restartGame: function () {
@@ -72,7 +72,7 @@ var playState = {
         // Enable physics on the pipe
         game.physics.arcade.enable(pipe);
         // Add velocity to the pipe to make it move left
-        pipe.body.velocity.x = -170;
+        pipe.body.velocity.x = -190;
         // Automatically kill the pipe when it's no longer visible
         pipe.checkWorldBounds = true;
         pipe.outOfBoundsKill = true;
