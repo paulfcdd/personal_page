@@ -22,7 +22,7 @@ var playState = {
        bird = game.add.sprite(100,250, 'bird');
        game.physics.arcade.enable(bird);
        bird.body.bounce.y = 0.2;
-       bird.body.gravity.y = 850;
+       bird.body.gravity.y = 950;
 
        bird.anchor.setTo(-0.2, 0.5);
 
@@ -31,7 +31,7 @@ var playState = {
        var spaceKey = game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
        spaceKey.onDown.add(this.jump, this);
        game.input.onTap.add(this.jumpOnTap, this);
-       game.time.events.loop(1500, this.addRowOfPipes, this);
+       game.time.events.loop(1700, this.addRowOfPipes, this);
    },
     update: function () {
 
@@ -53,7 +53,7 @@ var playState = {
 
     },
     jumpOnTap: function() {
-        bird.body.velocity.y = -300;
+        bird.body.velocity.y = -330;
         game.add.tween(bird).to({angle: -20}, 100).start();
     },
     restartGame: function () {
@@ -72,7 +72,7 @@ var playState = {
         // Enable physics on the pipe
         game.physics.arcade.enable(pipe);
         // Add velocity to the pipe to make it move left
-        pipe.body.velocity.x = -190;
+        pipe.body.velocity.x = -200;
         // Automatically kill the pipe when it's no longer visible
         pipe.checkWorldBounds = true;
         pipe.outOfBoundsKill = true;
